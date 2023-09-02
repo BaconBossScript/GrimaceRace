@@ -1,0 +1,41 @@
+if game.PlaceId == 13973120326 then
+ 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | Grimace Race", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+    
+_G.farm = true
+
+function farm()
+     while _G.farm == true do
+        local id  = 14608272415
+        for i,v in pairs(game:GetService("ReplicatedStorage").GameClient.Events.RemoteEvent:GetDescendants()) do
+        if v:IsA("RemoteEvent") then
+        v:FireServer(id)
+        if v:IsA("BindableEvent") then
+        v:Fire(id)
+        if v:IsA("RemoteFunction") then
+        v:InvokeServer(id)
+        end
+        end
+        end
+        end
+      wait(0.00000000000001)
+    end
+end
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MainTab:AddToggle({
+	Name = "Auto Super Fast Win Farm",
+	Default = false,
+	Callback = function(Value)
+		_G.farm = Value
+        farm()
+	end    
+})
+
+end
